@@ -31,7 +31,7 @@ export function AuthProvider({ children }: any) {
       const { token } = await authenticationService.postSignup(data)
       localStorage.setItem("bearerToken", token)
       api.instance.defaults.headers["Authorization"] = `Bearer ${token}`
-      navigate('/home')
+      window.location.href = '/home'
     } catch (e: any) {
       toast.error("Este usuário não existe no sistema")
     }

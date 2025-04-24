@@ -8,12 +8,13 @@ interface DepositModalProps {
 }
 
 export function DepositModal({ show, onClose, onConfirm }: DepositModalProps) {
-  const [amount, setAmount] = useState<number>(0)
+  const [amount, setAmount] = useState<string>('')
 
   const handleConfirm = () => {
-    if (amount > 0) {
-      onConfirm(amount)
-      setAmount(0)
+    const numericAmount = parseFloat(amount)
+    if (!isNaN(numericAmount) && numericAmount > 0) {
+      onConfirm(numericAmount)
+      setAmount('')
     }
   }
 
@@ -29,7 +30,7 @@ export function DepositModal({ show, onClose, onConfirm }: DepositModalProps) {
             type="number"
             placeholder="Digite o valor"
             value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
+            onChange={(e) => setAmount(e.target.value)}
             min={0.01}
             step={0.01}
           />
@@ -42,7 +43,7 @@ export function DepositModal({ show, onClose, onConfirm }: DepositModalProps) {
         <Button
           variant="success"
           onClick={handleConfirm}
-          disabled={amount <= 0}
+          disabled={Number(amount) <= 0}
         >
           Confirmar Depósito
         </Button>

@@ -21,7 +21,7 @@ export class ApiService {
   public instance = axios.create({
     baseURL: baseURL,
     headers: {
-      Authorization: `Bearer ${cookies.get('token')}`,
+      Authorization: `Bearer ${cookies.get('authToken')}`,
     },
   })
 

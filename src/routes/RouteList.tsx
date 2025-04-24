@@ -7,7 +7,7 @@ const RouteList: IRoute[] = [
   {
     isPrivate: false,
     requiredPermissions: [],
-    path: "/login",
+    path: "/",
     element: <SignIn />,
   },
   {
